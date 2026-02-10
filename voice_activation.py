@@ -2,6 +2,7 @@ import queue
 from datetime import datetime
 import time
 
+import keyboard
 import numpy as np
 import pvporcupine
 import scipy
@@ -298,7 +299,7 @@ class VoiceActivation:
                     try:
                         audio_chunk = self.audio_queue.get(timeout=0.5)
 
-                        if self.detect_activation_word(audio_chunk):
+                        if self.detect_activation_word(audio_chunk) or keyboard.is_pressed('space'):
                             self.activation_count += 1
                             self.print_debug("Ключевое слово обнаружено!")
 
